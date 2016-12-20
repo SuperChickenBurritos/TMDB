@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	
+
+	<head>
+		<meta charset="utf-8">
+		<title>ng-cribs</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<style>
+			pre{white-space: pre-wrap; word-wrap: break-word;}
+		</style>
+	</head>
+
+	<body ng-app="ngCribs" ng-controller="cribsController" ng-init="Movie=true;">
+		
+	<div id="main">
+		<button class="btn btn-default" ng-click="getMpop(); Movie=true; ">Movies</button>
+		<button class="btn btn-default" ng-click="getTVpop(); Movie=false;" >TV</button>
+		<br><br>
+
+		<input type="text" placeholder="" id="Name" ng-model="message">
+		
+		<button type="button" class="btn btn-default" ng-click="MovieSearch(Movie); TVSearch(Movie)">Search</button>
+		<br><br>
+
+		<div class="container" >
+
+			<div  class ="col-sm-4" ng-repeat="attribute in Results" >
+			
+				<button class="thumbnail" >
+					<img id="poster" src="http://image.tmdb.org/t/p/w300/{{attribute.backdrop_path}}">
+					<h5 id="title" ng-hide="Movie==false;" id="title">{{ attribute.title }}</h5>
+					<h5 id="title" ng-show="Movie==false;" id="name">{{ attribute.name }}</h5>	
+					<a class="btn btn-info" ng-click="overview=!overview">Overview</a>
+					<p ng-show="overview==true">Overvirew:  {{attribute.overview}}</p>
+
+				</button>
+
+			</div>
+		</div>
+	</div>
+		
+
+	</body>
+
+
+
+	<script src ="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.1/ui-bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.1/ui-bootstrap-tpls.min.js"></script>
+	<script src="app.js"></script>
+	<script src="scripts/cribsController.js"></script>
+	<script src="scripts/cribsFactory.js"></script>
+</html>
